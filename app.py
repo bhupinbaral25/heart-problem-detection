@@ -14,7 +14,7 @@ with open("config.yaml", "r") as config:
 
 def read_json()-> pd.DataFrame:
 
-    json_file = open('user_data.json','r')
+    json_file = open('user_data.json', 'r')
 
     return pd.DataFrame(json.loads(json_file.read()), index=[0])
 
@@ -45,14 +45,14 @@ def index():
 def get_prediction():
 
     result = {} 
-    user_data = getdiscretization(read_json(),'age',bins = file_paths['bins'])
+    user_data = getdiscretization(read_json(), 'age', bins = file_paths['bins'])
     model = load_model(file_paths['model_path'])
     prediction = model.predict(user_data) 
 
     if prediction[0] == 1:
-        result['msg']= 'have heart problem '
+        result['msg'] = 'have heart problem '
     else:
-        result['msg']= 'doesnot have heart problem '
+        result['msg'] = 'doesnot have heart problem '
 
     return jsonify(result)
 
