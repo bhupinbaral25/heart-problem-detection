@@ -1,0 +1,10 @@
+src/heart.csv
+src/__pycache__
+.ipynb_checkpoints
+template/home.html
+template/predict.html
+itest.py
+main.py
+src/EDA.ipynb
+static
+models/

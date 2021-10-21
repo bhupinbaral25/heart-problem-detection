@@ -1,0 +1,5 @@
+flask_url: "http://127.0.0.1:5000"
+
+bins: [25, 40, 60, 79]
+
+model_path: '../heartapi/models/RFheart_disease_detector.pickle'
