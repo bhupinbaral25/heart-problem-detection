@@ -25,7 +25,7 @@ output: Heart disease (0 = no, 1 = yes)
 | 📚 **[Find notebook]**     |  Interative notebook for EDA                                   |
 | 📚 **[Find Model]**        | ML model (download form link and place inside models foler)    |
 
-[Final Model]:https://drive.google.com/file/d/1enVuG9CPkBeqcP97yoTaTGlEdzVbfIGC/view?usp=sharing
+[Find Model]:https://drive.google.com/file/d/1enVuG9CPkBeqcP97yoTaTGlEdzVbfIGC/view?usp=sharing
 [Find notebook]:https://drive.google.com/file/d/1R0xSEuEqXJxQWMe-BlwJusBcElOtRYLU/view?usp=sharing
 
 ## Features
@@ -69,6 +69,10 @@ To activate virtual environment
 ```bash
 source envname/bin/activate
 ```
+To get the project requirements.
+```bash
+pip install -r requirement.txt
+```
 ### Getting the dataset
 
 To download the dataset into the folder, use:
@@ -88,6 +92,7 @@ python app.py
 
 ## Author 
 Bhupin Baral
+
 bhupinbaral.729@gmail.com
 
 
