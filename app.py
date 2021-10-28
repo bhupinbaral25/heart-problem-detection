@@ -38,16 +38,16 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-        
-    return render_template("index.html")
+    return jsonify({"message": "Welcome to the home page"})
 
 @app.route("/Predict", methods=["GET", "POST"])
 def get_prediction():
-
+    content = pd.DataFrame(request.json, index=[0])
     result = {} 
-    user_data = getdiscretization(read_json(), 'age', bins = file_paths['bins'])
+    user_data = getdiscretization(content, 'age', bins = file_paths['bins'])
     model = load_model(file_paths['model_path'])
     prediction = model.predict(user_data) 
+    print(prediction)
 
     if prediction[0] == 1:
         result['msg'] = 'have heart problem '
@@ -57,6 +57,34 @@ def get_prediction():
     return jsonify(result)
 
 
+def handler(event, context):
+    # return app.run(host='', port=8080)
+    print(event)
+    content = pd.DataFrame(json.loads(event['body']), index=[0])
+    result = {} 
+    user_data = getdiscretization(content, 'age', bins = file_paths['bins'])
+    model = load_model(file_paths['model_path'])
+    prediction = model.predict(user_data) 
+    print(prediction)
+
+    if prediction[0] == 1:
+        result['msg'] = 'have heart problem '
+    else:
+        result['msg'] = 'doesnot have heart problem '
+
+    resp = {
+        "statusCode": 200,
+        "body": json.dumps({"message": result['msg']}),
+        "headers": {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": True,
+        }
+    }
+    return resp
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
+
+
 
